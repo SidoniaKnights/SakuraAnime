@@ -10,47 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/thumb"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="#000000"
-            android:scaleType="fitXY" />
     </FrameLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/layout_bottom"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp">
-
-        <TextView
-            android:id="@+id/pre_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/change_drama_bg"
-            android:drawableLeft="@drawable/baseline_first_page_white_48dp"
-            android:gravity="center"
-            android:padding="8dp"
-            android:textColor="#ffffff"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/next_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_toRightOf="@+id/pre_video"
-            android:background="@drawable/change_drama_bg"
-            android:drawableRight="@drawable/baseline_last_page_white_48dp"
-            android:gravity="center"
-            android:padding="8dp"
-            android:textColor="#ffffff"
-            android:visibility="gone" />
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/thumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -73,7 +44,7 @@
         <SeekBar
             android:id="@+id/bottom_seek_progress"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1.0"
             android:background="@null"
@@ -105,39 +76,13 @@
             android:textColor="#ffffff" />
 
         <ImageView
-            android:id="@+id/tvSpeed_down"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/ripple_cycle_white_16dp"
-            android:clickable="true"
-            android:padding="4dp"
-            android:paddingLeft="8dp"
-            android:src="@drawable/ic_minus_round" />
-
-        <TextView
-            android:id="@+id/tvSpeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff" />
-
-        <ImageView
-            android:id="@+id/tvSpeed_up"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/ripple_cycle_white_16dp"
-            android:clickable="true"
-            android:padding="4dp"
-            android:src="@drawable/ic_add_round"
-            android:textColor="#ffffff" />
-
-        <ImageView
             android:id="@+id/fullscreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="52.5dp"
+            android:layout_height="fill_parent"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
             android:scaleType="centerInside"
-            android:src="@drawable/baseline_view_selections_white_48dp" />
+            android:src="@drawable/jz_enlarge" />
     </LinearLayout>
 
     <ProgressBar
@@ -168,19 +113,19 @@
         android:background="@drawable/jz_title_bg"
         android:paddingStart="10dp"
         android:paddingLeft="10dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="6dp"
-            android:background="@drawable/ripple_cycle_white_16dp"
-            android:padding="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:padding="3dp"
             android:scaleType="centerInside"
-            android:src="@drawable/baseline_arrow_back_white_48dp" />
+            android:src="@drawable/jz_click_back_selector" />
 
         <TextView
             android:id="@+id/title"
@@ -188,33 +133,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="12dp"
-            android:layout_toStartOf="@+id/config"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/battery_time_layout"
             android:layout_toEndOf="@+id/back"
+            android:layout_toRightOf="@+id/back"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/config"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="14dp"
-            android:layout_toLeftOf="@+id/airplay"
-            android:src="@drawable/ic_settings_white_48dp"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/airplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="14dp"
-            android:src="@drawable/baseline_airplay_white_48dp"
-            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/battery_time_layout"
@@ -227,7 +153,7 @@
             android:layout_marginRight="14dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/battery_level"
@@ -254,51 +180,23 @@
         android:layout_height="@dimen/jz_start_button_w_h_normal"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:indeterminateDrawable="@drawable/jz_loading"
         android:visibility="invisible" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/start_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
-
-        <ImageView
-            android:id="@+id/std_lock"
-            android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:src="@drawable/player_btn_locking"
-            android:visibility="invisible" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical">
 
         <ImageView
             android:id="@+id/start"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
             android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/jz_click_play_selector" />
-
-        <ImageView
-            android:id="@+id/quick_retreat"
-            android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="40dp"
-            android:layout_toLeftOf="@+id/start"
-            android:src="@drawable/baseline_fast_rewind_white_48dp"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/fast_forward"
-            android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="40dp"
-            android:layout_toRightOf="@+id/start"
-            android:src="@drawable/baseline_fast_forward_white_48dp"
-            android:visibility="invisible" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <TextView
@@ -342,34 +240,6 @@
             android:paddingBottom="4dp"
             android:text="@string/click_to_restart"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/open_drama_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/retry_bg"
-            android:paddingLeft="9dp"
-            android:paddingTop="4dp"
-            android:paddingRight="9dp"
-            android:paddingBottom="4dp"
-            android:text="@string/open_drama_list"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/sniffer_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/sniffer_bg"
-            android:paddingLeft="9dp"
-            android:paddingTop="4dp"
-            android:paddingRight="9dp"
-            android:paddingBottom="4dp"
-            android:text="@string/click_to_sniffer"
-            android:textColor="@color/orange800"
             android:textSize="14sp" />
     </LinearLayout>
 </RelativeLayout>
