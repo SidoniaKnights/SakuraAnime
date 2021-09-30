@@ -14,15 +14,6 @@ import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.button.MaterialButton;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,6 +23,14 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.jzvd.JZUtils;
@@ -75,8 +74,8 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
     LinearLayout linearLayout;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-/*    @BindView(R.id.anime_title)
-    TextView titleView;*/
+    /*    @BindView(R.id.anime_title)
+        TextView titleView;*/
     @BindView(R.id.pic_config)
     RelativeLayout picConfig;
     //播放网址
@@ -140,7 +139,9 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
     }
 
     private void init(Bundle bundle) {
-        player.setOnClickListener(view -> { return; });
+        player.setOnClickListener(view -> {
+            return;
+        });
         //播放地址
         url = bundle.getString("url");
         //集数名称
@@ -196,17 +197,17 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
         });
         if (list.size() > 1) {
             popupMenu = new PopupMenu(this, spinner);
-            for (int i=1; i<list.size()+1; i++) {
+            for (int i = 1; i < list.size() + 1; i++) {
                 popupMenu.getMenu().add(android.view.Menu.NONE, i, i, "播放源 " + i);
             }
             popupMenu.setOnMenuItemClickListener(item -> {
-                dramaAdapter.setNewData(list.get(item.getItemId()-1));
-                nowSource = item.getItemId()-1;
+                dramaAdapter.setNewData(list.get(item.getItemId() - 1));
+                nowSource = item.getItemId() - 1;
                 spinner.setText("播放源 " + item.getItemId());
                 setPlayerPreNextTag();
                 return true;
             });
-            spinner.setText("播放源 " + (nowSource+1));
+            spinner.setText("播放源 " + (nowSource + 1));
             spinner.setVisibility(View.VISIBLE);
         }
         player.config.setOnClickListener(v -> {
@@ -221,7 +222,7 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
                 drawerLayout.closeDrawer(GravityCompat.END);
             else drawerLayout.openDrawer(GravityCompat.END);
         });
-        player.setListener(this,  false, this, this, this, this, this, this);
+        player.setListener(this, false, this, this, this, this, this, this);
         player.backButton.setOnClickListener(v -> finish());
         player.preVideo.setOnClickListener(v -> {
             clickIndex--;
@@ -235,8 +236,15 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
         player.snifferBtn.setOnClickListener(v -> sniffer());
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) picConfig.setVisibility(View.GONE);
         else picConfig.setVisibility(View.VISIBLE);
-        if (gtSdk23()) player.tvSpeed.setVisibility(View.VISIBLE);
-        else player.tvSpeed.setVisibility(View.GONE);
+        if (gtSdk23()) {
+            player.tvSpeed.setVisibility(View.VISIBLE);
+            player.tvSpeedUp.setVisibility(View.VISIBLE);
+            player.tvSpeedDown.setVisibility(View.VISIBLE);
+        } else {
+            player.tvSpeed.setVisibility(View.GONE);
+            player.tvSpeedUp.setVisibility(View.GONE);
+            player.tvSpeedDown.setVisibility(View.GONE);
+        }
         player.fullscreenButton.setOnClickListener(view -> {
             if (!Utils.isFastClick()) return;
             if (drawerLayout.isDrawerOpen(GravityCompat.END))
@@ -275,9 +283,9 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
 
     private void setPlayerPreNextTag() {
         hasPreVideo = clickIndex != 0;
-        player.preVideo.setText(hasPreVideo ? String.format(PREVIDEOSTR, list.get(nowSource).get(clickIndex-1).getTitle()) : "");
+        player.preVideo.setText(hasPreVideo ? String.format(PREVIDEOSTR, list.get(nowSource).get(clickIndex - 1).getTitle()) : "");
         hasNextVideo = clickIndex != list.get(nowSource).size() - 1;
-        player.nextVideo.setText(hasNextVideo ? String.format(NEXTVIDEOSTR, list.get(nowSource).get(clickIndex+1).getTitle()) : "");
+        player.nextVideo.setText(hasNextVideo ? String.format(NEXTVIDEOSTR, list.get(nowSource).get(clickIndex + 1).getTitle()) : "");
     }
 
     private void changePlayUrl(int position) {
@@ -325,7 +333,7 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
         else {
             alertDialog = Utils.getProDialog(this, R.string.should_be_sniffer);
             try {
-                webUrl = String.format(Api.IMOMOE_PARSE_API, imomoeBeans.get(nowSource).get(clickIndex).getParam(), url,  URLEncoder.encode(Sakura.DOMAIN +  list.get(nowSource).get(clickIndex).getUrl(),"GB2312"));
+                webUrl = String.format(Api.IMOMOE_PARSE_API, imomoeBeans.get(nowSource).get(clickIndex).getParam(), url, URLEncoder.encode(Sakura.DOMAIN + list.get(nowSource).get(clickIndex).getUrl(), "GB2312"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -336,6 +344,7 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
 
     /**
      * 播放视频
+     *
      * @param playUrl
      */
     private void play(String playUrl) {
@@ -359,7 +368,7 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
             SniffingUtil.get().activity(this).referer(webUrl).callback(this).url(webUrl).start();
         } else {
             try {
-              webUrl = String.format(Api.IMOMOE_PARSE_API, imomoeBeans.get(nowSource).get(clickIndex).getParam(), url,  URLEncoder.encode(BaseModel.getDomain(true) +  list.get(nowSource).get(clickIndex).getUrl(),"GB2312"));
+                webUrl = String.format(Api.IMOMOE_PARSE_API, imomoeBeans.get(nowSource).get(clickIndex).getParam(), url, URLEncoder.encode(BaseModel.getDomain(true) + list.get(nowSource).get(clickIndex).getUrl(), "GB2312"));
                 SniffingUtil.get().activity(this).referer(webUrl).callback(this).url(webUrl).start();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -478,8 +487,7 @@ public class ImomoePlayerActivity extends BaseActivity implements JZPlayer.Compl
         if (Utils.videoHasComplete(playPosition, videoDuration)) {
             playPosition = 0;
             DatabaseUtil.updateHistory(animeId, dramaUrl, playPosition, videoDuration);
-        }
-        else
+        } else
             DatabaseUtil.updateHistory(animeId, dramaUrl, playPosition > 2000 ? playPosition : 0, videoDuration);
         Log.e("saveProgress", "番剧ID：" + animeId + ",剧集URL：" + dramaUrl + ",播放进度：" + playPosition + ",视频长度：" + videoDuration);
     }

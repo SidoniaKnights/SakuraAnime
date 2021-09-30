@@ -33,7 +33,7 @@ public class JZPlayer extends JzvdStd {
     private PauseListener pauseListener;
     private ImageView ibLock;
     private boolean locked = false;
-    public ImageView fastForward, quickRetreat, config, airplay;
+    public ImageView fastForward, quickRetreat, config, airplay,tvSpeedUp, tvSpeedDown;
     public TextView tvSpeed, snifferBtn, openDrama, preVideo, nextVideo;
     public int currentSpeedIndex = 1;
     private boolean isLocalVideo;
@@ -75,8 +75,11 @@ public class JZPlayer extends JzvdStd {
         fastForward = findViewById(R.id.fast_forward);
         fastForward.setOnClickListener(this);
         config = findViewById(R.id.config);
+        tvSpeedDown = findViewById(R.id.tvSpeed_down);
+        tvSpeedUp = findViewById(R.id.tvSpeed_up);
         tvSpeed = findViewById(R.id.tvSpeed);
-        tvSpeed.setOnClickListener(this);
+        tvSpeedDown.setOnClickListener(this);
+        tvSpeedUp.setOnClickListener(this);
         airplay = findViewById(R.id.airplay);
         airplay.setOnClickListener(this);
         snifferBtn = findViewById(R.id.sniffer_btn);
@@ -114,8 +117,11 @@ public class JZPlayer extends JzvdStd {
                 long currentPositionWhenPlaying = getCurrentPositionWhenPlaying();
                 //快进（15S）
                 long fastForwardProgress = currentPositionWhenPlaying + (Integer) SharedPreferencesUtils.getParam(context, "user_speed", 15) * 1000;
-                if (duration > fastForwardProgress) mediaInterface.seekTo(fastForwardProgress);
-                else mediaInterface.seekTo(duration);
+                if (duration > fastForwardProgress) {
+                    mediaInterface.seekTo(fastForwardProgress);
+                } else {
+                    mediaInterface.seekTo(duration);
+                }
                 break;
             case R.id.quick_retreat:
                 //当前时间
@@ -125,11 +131,17 @@ public class JZPlayer extends JzvdStd {
                 if (quickRetreatProgress > 0) mediaInterface.seekTo(quickRetreatProgress);
                 else mediaInterface.seekTo(0);
                 break;
-            case R.id.tvSpeed:
-                if (currentSpeedIndex == 7) currentSpeedIndex = 0;
+            case R.id.tvSpeed_down:
+                if (currentSpeedIndex == 0) currentSpeedIndex = 5;
+                else currentSpeedIndex -= 1;
+                mediaInterface.setSpeed(getSpeedFromIndex(currentSpeedIndex));
+                tvSpeed.setText("x" + getSpeedFromIndex(currentSpeedIndex));
+                break;
+            case R.id.tvSpeed_up:
+                if (currentSpeedIndex == 5) currentSpeedIndex = 0;
                 else currentSpeedIndex += 1;
                 mediaInterface.setSpeed(getSpeedFromIndex(currentSpeedIndex));
-                tvSpeed.setText("倍数X" + getSpeedFromIndex(currentSpeedIndex));
+                tvSpeed.setText("x" + getSpeedFromIndex(currentSpeedIndex));
                 break;
             case R.id.airplay:
                 if (!Utils.isWifi(context)) {
@@ -170,15 +182,9 @@ public class JZPlayer extends JzvdStd {
                 ret = 1.5f;
                 break;
             case 4:
-                ret = 1.75f;
-                break;
-            case 5:
                 ret = 2.0f;
                 break;
-            case 6:
-                ret = 2.5f;
-                break;
-            case 7:
+            case 5:
                 ret = 3.0f;
                 break;
         }
@@ -305,7 +311,7 @@ public class JZPlayer extends JzvdStd {
     public void setScreenFullscreen() {
         super.setScreenFullscreen();
         fullscreenButton.setImageResource(R.drawable.baseline_view_selections_white_48dp);
-        tvSpeed.setText("倍数X" + getSpeedFromIndex(currentSpeedIndex));
+        tvSpeed.setText("x" + getSpeedFromIndex(currentSpeedIndex));
     }
 
     public interface PlayingListener {

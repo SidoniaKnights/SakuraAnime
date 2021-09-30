@@ -73,7 +73,7 @@
         <SeekBar
             android:id="@+id/bottom_seek_progress"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1.0"
             android:background="@null"
@@ -104,12 +104,30 @@
             android:textAlignment="center"
             android:textColor="#ffffff" />
 
+        <ImageView
+            android:id="@+id/tvSpeed_down"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ripple_cycle_white_16dp"
+            android:clickable="true"
+            android:padding="4dp"
+            android:paddingLeft="8dp"
+            android:src="@drawable/ic_minus_round" />
+
         <TextView
             android:id="@+id/tvSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/tvSpeed_up"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ripple_cycle_white_16dp"
             android:clickable="true"
-            android:paddingLeft="14dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_add_round"
             android:textColor="#ffffff" />
 
         <ImageView

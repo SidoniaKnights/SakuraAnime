@@ -204,8 +204,15 @@ public class PlayerActivity extends BaseActivity implements VideoContract.View, 
         player.snifferBtn.setOnClickListener(v -> snifferPlayUrl(url));
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) picConfig.setVisibility(View.GONE);
         else picConfig.setVisibility(View.VISIBLE);
-        if (gtSdk23()) player.tvSpeed.setVisibility(View.VISIBLE);
-        else player.tvSpeed.setVisibility(View.GONE);
+        if (gtSdk23()) {
+            player.tvSpeed.setVisibility(View.VISIBLE);
+            player.tvSpeedUp.setVisibility(View.VISIBLE);
+            player.tvSpeedDown.setVisibility(View.VISIBLE);
+        } else {
+            player.tvSpeed.setVisibility(View.GONE);
+            player.tvSpeedUp.setVisibility(View.GONE);
+            player.tvSpeedDown.setVisibility(View.GONE);
+        }
 //        player.setUp(url, witchTitle, Jzvd.SCREEN_FULLSCREEN, JZExoPlayer.class);
         player.fullscreenButton.setOnClickListener(view -> {
             if (!Utils.isFastClick()) return;

@@ -22,33 +22,33 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_bottom"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:layout_above="@+id/layout_bottom">
+        android:layout_marginRight="14dp">
 
         <TextView
             android:id="@+id/pre_video"
-            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/change_drama_bg"
             android:drawableLeft="@drawable/baseline_first_page_white_48dp"
+            android:gravity="center"
             android:padding="8dp"
             android:textColor="#ffffff"
-            android:gravity="center"
-            android:background="@drawable/change_drama_bg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/next_video"
-            android:layout_toRightOf="@+id/pre_video"
-            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/pre_video"
+            android:background="@drawable/change_drama_bg"
             android:drawableRight="@drawable/baseline_last_page_white_48dp"
+            android:gravity="center"
             android:padding="8dp"
             android:textColor="#ffffff"
-            android:gravity="center"
-            android:background="@drawable/change_drama_bg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -73,7 +73,7 @@
         <SeekBar
             android:id="@+id/bottom_seek_progress"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1.0"
             android:background="@null"
@@ -104,12 +104,30 @@
             android:textAlignment="center"
             android:textColor="#ffffff" />
 
+        <ImageView
+            android:id="@+id/tvSpeed_down"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ripple_cycle_white_16dp"
+            android:clickable="true"
+            android:padding="4dp"
+            android:paddingLeft="8dp"
+            android:src="@drawable/ic_minus_round" />
+
         <TextView
             android:id="@+id/tvSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/tvSpeed_up"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ripple_cycle_white_16dp"
             android:clickable="true"
-            android:paddingLeft="14dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_add_round"
             android:textColor="#ffffff" />
 
         <ImageView
@@ -182,24 +200,24 @@
 
         <ImageView
             android:id="@+id/config"
-            android:visibility="invisible"
-            android:layout_toLeftOf="@+id/airplay"
-            android:layout_marginRight="14dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_settings_white_48dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:layout_toLeftOf="@+id/airplay"
+            android:src="@drawable/ic_settings_white_48dp"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/airplay"
-            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="14dp"
             android:src="@drawable/baseline_airplay_white_48dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/battery_time_layout"
@@ -249,13 +267,13 @@
 
         <ImageView
             android:id="@+id/std_lock"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="12dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/player_btn_locking"
-            android:visibility="invisible"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"/>
+            android:layout_height="@dimen/jz_start_button_w_h_normal"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/player_btn_locking"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/start"
@@ -266,23 +284,23 @@
 
         <ImageView
             android:id="@+id/quick_retreat"
-            android:layout_toLeftOf="@+id/start"
-            android:layout_marginRight="40dp"
-            android:src="@drawable/baseline_fast_rewind_white_48dp"
-            android:layout_centerVertical="true"
-            android:visibility="invisible"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"/>
+            android:layout_height="@dimen/jz_start_button_w_h_normal"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@+id/start"
+            android:src="@drawable/baseline_fast_rewind_white_48dp"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/fast_forward"
-            android:layout_toRightOf="@+id/start"
-            android:layout_marginLeft="40dp"
-            android:src="@drawable/baseline_fast_forward_white_48dp"
-            android:layout_centerVertical="true"
-            android:visibility="invisible"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"/>
+            android:layout_height="@dimen/jz_start_button_w_h_normal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_toRightOf="@+id/start"
+            android:src="@drawable/baseline_fast_forward_white_48dp"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 
