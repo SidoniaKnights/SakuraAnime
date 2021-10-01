@@ -292,7 +292,7 @@ public class YhdmJsoupUtils {
      * @param dramaStr
      * @return 如果没有播放列表则返回null
      */
-    public static AnimeDescListBean getAnimeDescList(String source, String dramaStr) {
+    public static AnimeDescListBean getAnimeDescList(String source, String dramaStr, boolean resort) {
         AnimeDescListBean animeDescListBean = new AnimeDescListBean();
         Document document = Jsoup.parse(source);
         Elements dramaElements = document.select("div.movurl > ul > li"); //剧集列表
@@ -300,12 +300,22 @@ public class YhdmJsoupUtils {
             /** 封装剧集 **/
             List<AnimeDescDetailsBean> animeDescDramasBeans = new ArrayList<>();
             boolean select;
-            for (int i = 0, size = dramaElements.size(); i < size; i++) {
-                String name = dramaElements.get(i).select("a").text();
-                String watchUrl = dramaElements.get(i).select("a").attr("href");
-                if (dramaStr.contains(watchUrl)) select = true;
-                else select = false;
-                animeDescDramasBeans.add(new AnimeDescDetailsBean(name, watchUrl, select));
+            if (resort) {
+                for (int i = dramaElements.size() - 1; i >= 0; i--) {
+                    String name = dramaElements.get(i).select("a").text();
+                    String watchUrl = dramaElements.get(i).select("a").attr("href");
+                    if (dramaStr.contains(watchUrl)) select = true;
+                    else select = false;
+                    animeDescDramasBeans.add(new AnimeDescDetailsBean(name, watchUrl, select));
+                }
+            } else {
+                for (int i = 0, size = dramaElements.size(); i < size; i++) {
+                    String name = dramaElements.get(i).select("a").text();
+                    String watchUrl = dramaElements.get(i).select("a").attr("href");
+                    if (dramaStr.contains(watchUrl)) select = true;
+                    else select = false;
+                    animeDescDramasBeans.add(new AnimeDescDetailsBean(name, watchUrl, select));
+                }
             }
             animeDescListBean.setAnimeDescDetailsBeans(animeDescDramasBeans);
             /** 封装多季 **/

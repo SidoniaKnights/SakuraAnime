@@ -1,5 +1,6 @@
 package my.project.sakuraproject.main.desc;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.IOException;
@@ -60,7 +61,12 @@ public class DescModel extends BaseModel implements DescContract.Model {
                         callback.successDesc(animeListBean);
                         callback.isImomoe(false);
                         callback.getAnimeId(fid);
-                        AnimeDescListBean animeDescListBean = YhdmJsoupUtils.getAnimeDescList(source, dramaStr);
+                        boolean resort = false;
+                        String updateTime = animeListBean.getUpdateTime();
+                        if (updateTime != null && updateTime.contains("更新")) {
+                            resort = true;
+                        }
+                        AnimeDescListBean animeDescListBean = YhdmJsoupUtils.getAnimeDescList(source, dramaStr, resort);
                         if (animeDescListBean != null)
                             callback.successMain(animeDescListBean);
                         else
