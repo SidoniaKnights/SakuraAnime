@@ -164,6 +164,7 @@ public class JZPlayer extends JzvdStd {
                 context.startActivity(new Intent(context, DLNAActivity.class).putExtras(bundle));
                 break;
         }
+        startDismissControlViewTimer();
     }
 
     private float getSpeedFromIndex(int index) {

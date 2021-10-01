@@ -38,14 +38,14 @@
                     android:descendantFocusability="blocksDescendants"
                     android:orientation="vertical">
 
-<!--                    <TextView
-                        android:id="@+id/anime_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:padding="5dp"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />-->
+                    <!--                    <TextView
+                                            android:id="@+id/anime_title"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:padding="5dp"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="18sp" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_list"
@@ -78,39 +78,39 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:text="@string/player_setting_title"
-                        android:textColor="@android:color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="18sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="@string/player_setting_title"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
 
                     <RelativeLayout
                         android:id="@+id/speed_config"
-                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp">
+                        android:layout_height="45dp"
+                        android:background="?android:attr/selectableItemBackground">
 
                         <ImageView
                             android:id="@+id/config_icon1"
-                            android:src="@drawable/baseline_replay_white_48dp"
-                            android:tint="@android:color/white"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp" />
+                            android:src="@drawable/baseline_replay_white_48dp"
+                            android:tint="@android:color/white" />
 
                         <TextView
-                            android:text="@string/set_user_speed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/config_icon1"
                             android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/config_icon1"
+                            android:text="@string/set_user_speed"
                             android:textColor="@android:color/white" />
 
                         <TextView
@@ -118,6 +118,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
                             android:text="15s"
                             android:textColor="@android:color/white" />
@@ -130,31 +131,31 @@
 
                         <ImageView
                             android:id="@+id/config_icon2"
-                            android:src="@drawable/baseline_visibility_black_48dp"
-                            android:tint="@android:color/white"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp" />
+                            android:src="@drawable/baseline_visibility_black_48dp"
+                            android:tint="@android:color/white" />
 
                         <TextView
-                            android:text="@string/hide_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/config_icon2"
                             android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/config_icon2"
+                            android:text="@string/hide_progress"
                             android:textColor="@android:color/white" />
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/hide_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:thumbTint="@color/colorAccent"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white"
+                            android:thumbTint="@color/colorAccent" />
 
                     </RelativeLayout>
 
@@ -164,61 +165,61 @@
 
                         <ImageView
                             android:id="@+id/config_icon3"
-                            android:src="@drawable/baseline_last_page_white_48dp"
-                            android:tint="@android:color/white"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp" />
+                            android:src="@drawable/baseline_last_page_white_48dp"
+                            android:tint="@android:color/white" />
 
                         <TextView
-                            android:text="@string/play_next_video"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/config_icon3"
                             android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/config_icon3"
+                            android:text="@string/play_next_video"
                             android:textColor="@android:color/white" />
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/play_next_video"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:thumbTint="@color/colorAccent"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white"
+                            android:thumbTint="@color/colorAccent" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/pic_config"
-                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp">
+                        android:layout_height="45dp"
+                        android:background="?android:attr/selectableItemBackground">
 
                         <ImageView
                             android:id="@+id/config_icon4"
-                            android:src="@drawable/baseline_picture_in_picture_alt_white_48dp"
-                            android:tint="@android:color/white"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp" />
+                            android:src="@drawable/baseline_picture_in_picture_alt_white_48dp"
+                            android:tint="@android:color/white" />
 
                         <TextView
-                            android:text="@string/picture_in_picture_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/config_icon4"
                             android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/config_icon4"
+                            android:text="@string/picture_in_picture_title"
                             android:textColor="@android:color/white" />
 
                     </RelativeLayout>
 
-                    </LinearLayout>
+                </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
